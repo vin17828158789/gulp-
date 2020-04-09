@@ -1,0 +1,39 @@
+学习目标
+    gulp的使用
+
+    1. 安装步骤
+        1-1: 先全局安装gulp命令: npm i -g gulp@3.9.1
+        1-2: npm init 创建包描述文件
+        1-3: npm i gulp@3.9.1 -D  安装在项目中
+
+        必须生成一个 gulpfile.js 文件
+        运行方式 直接 在dos里面->gulp
+
+        插件网站
+        npm 所有插件 ：https://npmjs.org/browse/keyword/gulpplugin
+        gulp插件地址 ：http://gulpjs.com/plugins/ 
+
+    2. 插件的使用
+        举例: 压缩和重命名一起使用
+        
+        // 定义默认任务
+        gulp.task('default', ["uglify"]);
+
+        // 定义你要执行的压缩和重命名任务
+        gulp.task('uglify', function () {
+            return pipeline(
+                    gulp.src('js/*.js'),    // 原js路径
+                    uglify(),   // 执行压缩的方法
+                    rename(function(path){
+                        path.basename += ".min";
+                    }), //给文件重命名
+                    gulp.dest('dist/js')   // 输出路径
+            );
+        });
+
+    3. 插件使用步骤
+        3-1: 安装插件  可以在package.json文件中查看
+        3-2: gulpfile.js文件中 引入插件
+        3-3: 在默认任务中 定义你要执行的任务
+        3-4: 复制官网代码 制定任务内容
+        
